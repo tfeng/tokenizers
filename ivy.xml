@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="1.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="me.tfeng" module="tokenizer" revision="0.1" />
+  <dependencies>
+    <dependency name="mmseg4j-core" org="com.chenlb.mmseg4j" rev="1.9.1" />
+    <dependency name="lucene-analyzers-common" org="org.apache.lucene" rev="4.3.1" />
+    <dependency name="lucene-core" org="org.apache.lucene" rev="4.3.1" />
+  </dependencies>
+</ivy-module>
