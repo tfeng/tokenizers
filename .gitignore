@@ -1,2 +1,4 @@
 ivy-lib
 lib
+/bin
+*.tok
