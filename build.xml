@@ -10,7 +10,14 @@
     <pathelement path="${classes.dir}" />
   </path>
 
-  <target name="-init" description="Initialize">
+  <path id="main-classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />
+    </fileset>
+    <pathelement path="${classes.dir}" />
+  </path>
+
+  <target name="-init">
     <mkdir dir="${ivy.lib}"/>
     <condition property="ivy.jar.exists">
       <available file="${ivy.lib}/ivy-${ivy.version}.jar"/>
@@ -31,10 +38,20 @@
   </target>
 
   <target name="ivy-retrieve" depends="-ivy-init">
+    <delete dir="${lib.dir}" />
     <mkdir dir="${lib.dir}"/>
     <ivy:resolve file="ivy.xml" conf="*" transitive="true"/>
   </target>
 
-  <target name="default">
+  <target name="build">
+    <delete dir="${classes.dir}" />
+    <mkdir dir="${classes.dir}" />
+    <javac fork="true" destdir="${classes.dir}" target="1.6" debug="true" deprecation="false" failonerror="true">
+      <src path="${java.dir}" />
+      <classpath refid="main-classpath" />
+    </javac>
+  </target>
+
+  <target name="default" depends="build">
   </target>
 </project>
